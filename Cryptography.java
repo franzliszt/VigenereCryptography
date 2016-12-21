@@ -56,7 +56,7 @@ public class Cryptography {
                 if (tempk == vigenere1[0]) {
                     ciphertext += vigenere1[position];
                     ctr++;
-                    if(ctr > 2)
+                    if(ctr > key.length() - 1)
                         ctr = 0;
                     break;
                 }

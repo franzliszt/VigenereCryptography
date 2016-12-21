@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
  * @author stianreistadrogeberg
  */
 public class VigenereController {
-    private Cryptography c;
+    private final Cryptography c;
     private boolean encMode;
     
     @FXML public TextField inputString;
@@ -34,6 +34,7 @@ public class VigenereController {
     @FXML
     public void toggleMode() {
         encMode = !encMode;
+        resetFields();
         
         if(encMode) {
             encrypt.setText("Encrypt");
@@ -44,15 +45,28 @@ public class VigenereController {
         }
     }
     
+    private void resetFields() {
+        inputString.setText("");
+        encryptionKey.setText("");
+    }
+    
     @FXML
     public void encryptionMode() {
-        if(encMode) {
-            String cipherText = c.encrypt(inputString.getText(), getKey());
+        String userInput = inputString.getText();
+        boolean ok = checkInput(userInput);
+        
+        if(encMode && ok) {
+            String cipherText = c.encrypt(userInput, getKey());
             outputResult.setText(cipherText);
-        } else {
+        } 
+        if(!encMode && ok) {
             String plaintext = c.decrypt(inputString.getText(), getKey());
             outputResult.setText(plaintext);
         }
+    }
+    
+    private boolean checkInput(String input) {
+        return input.matches("[a-zA-Z]+");
     }
     
     private String getKey() {
