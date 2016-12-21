@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<GridPane id="gridpane" prefHeight="500.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="vigenerecryptography.VigenereController" alignment="center"
+            hgap="10" vgap="10">
+    
+    
+        <Text text="Encrypt and decrypt" GridPane.columnIndex="0"
+            GridPane.rowIndex="0" GridPane.columnSpan="2" />
+        
+        <Label text="Choose encrypt or decrypt:" GridPane.columnIndex="0"
+            GridPane.rowIndex="1"/>
+        
+        <Button fx:id="mode" text="Encryption" GridPane.columnIndex="1"
+            GridPane.rowIndex="1" onAction="#toggleMode" />
+        
+        <Label text="Your text her:" GridPane.columnIndex="0"
+            GridPane.rowIndex="2" />
+        
+        <TextField fx:id="inputString" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        
+        <Label text="Encryption key:" GridPane.columnIndex="0"
+            GridPane.rowIndex="3"/>
+        
+        <TextField fx:id="encryptionKey" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        
+        <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="1" 
+              GridPane.rowIndex="5">
+              <Button text="Encrypt" onAction="#encryptionMode" minHeight="40" minWidth="80"
+                fx:id="encrypt" id="encryptBtn"/>
+        </HBox>
+        
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="7"
+            text="Result: "/>
+        
+        <Label fx:id="outputResult" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+        
+        
+</GridPane>
