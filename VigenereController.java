@@ -45,11 +45,6 @@ public class VigenereController {
         }
     }
     
-    private void resetFields() {
-        inputString.setText("");
-        encryptionKey.setText("");
-    }
-    
     @FXML
     public void encryptionMode() {
         String userInput = inputString.getText();
@@ -63,6 +58,11 @@ public class VigenereController {
             String plaintext = c.decrypt(inputString.getText(), getKey());
             outputResult.setText(plaintext);
         }
+    }
+    
+    private void resetFields() {
+        inputString.setText("");
+        encryptionKey.setText("");
     }
     
     private boolean checkInput(String input) {
