@@ -51,10 +51,10 @@ public class Cryptography {
             }
             
             // search the key-row
-            for (char[] vigenere1 : vigenere) {
+            for (char[] row : vigenere) {
                 char tempk = key.charAt(ctr);
-                if (tempk == vigenere1[0]) {
-                    ciphertext += vigenere1[position];
+                if (tempk == row[0]) {
+                    ciphertext += row[position];
                     ctr++;
                     if(ctr > key.length() - 1)
                         ctr = 0;
@@ -66,6 +66,31 @@ public class Cryptography {
     }
     
     public String decrypt(String ciphertext, String key) {
-        return null;
+        StringBuilder plaintext = new StringBuilder();
+        
+        int ctr = 0;
+        
+        for(int i = 0; i < ciphertext.length(); i++) {
+            char tempK = key.charAt(ctr++);
+            char temp = ciphertext.charAt(i);
+            
+            // sjekke i nøkkelraden
+            for (char[] vigenere1 : vigenere) {
+                if (vigenere1[0] == tempK) {
+                    // fant nøkkelbokstav
+                    // søke bortover i denne rader
+                    for (int col = 0; col < vigenere.length; col++) {
+                        if (vigenere1[col] == temp) {
+                            plaintext.append(vigenere[0][col]);
+                            //ctr++;
+                            if(ctr > key.length() - 1)
+                                ctr = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return plaintext.toString().toUpperCase();
     }
 }

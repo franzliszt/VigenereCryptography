@@ -47,7 +47,7 @@ public class VigenereController {
     
     @FXML
     public void encryptionMode() {
-        String userInput = inputString.getText();
+        String userInput = inputString.getText().toLowerCase();
         boolean ok = checkInput(userInput);
         
         if(encMode && ok) {
