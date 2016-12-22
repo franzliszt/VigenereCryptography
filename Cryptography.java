@@ -35,54 +35,55 @@ public class Cryptography {
     }
     
     public String encrypt(String plaintext, String key) {
-        String ciphertext = "";
+        StringBuilder ciphertext = new StringBuilder();
+        
+        // Counter for key index.
         int ctr = 0;
+        
         for(int i = 0; i < plaintext.length(); i++) {
             char temp = plaintext.charAt(i);
             
-            // position for the encrypted character
-            int position = 0;
-            
-            for(int j = 0; j < vigenere.length; j++) {
-                if(temp == vigenere[0][j]) {
-                    position = j;
-                    break;
-                }
-            }
-            
-            // search the key-row
-            for (char[] row : vigenere) {
-                char tempk = key.charAt(ctr);
-                if (tempk == row[0]) {
-                    ciphertext += row[position];
-                    ctr++;
-                    if(ctr > key.length() - 1)
-                        ctr = 0;
-                    break;
+            // Searching the first row to find plaintext position.
+            for(int col = 0; col < vigenere.length; col++) {
+                // Found position for plaintext character.
+                if(temp == vigenere[0][col]) {
+                    char tempK = key.charAt(ctr++);
+                    // Searching rows for key character.
+                    for (char[] vigenere1 : vigenere) {
+                        // Found key character row.
+                        if (tempK == vigenere1[0]) {
+                            ciphertext.append(vigenere1[col]);
+                            // Reset key counter.
+                            if(ctr > key.length() - 1)
+                                ctr = 0;
+                            break;
+                        }
+                    }
                 }
             }
         }
-        return ciphertext.toUpperCase();
+        return ciphertext.toString().toUpperCase();
     }
     
     public String decrypt(String ciphertext, String key) {
         StringBuilder plaintext = new StringBuilder();
         
+        // Counter for key index.
         int ctr = 0;
         
         for(int i = 0; i < ciphertext.length(); i++) {
             char tempK = key.charAt(ctr++);
             char temp = ciphertext.charAt(i);
             
-            // sjekke i nøkkelraden
+            // Search row for key.
             for (char[] vigenere1 : vigenere) {
+                // Found key character.
                 if (vigenere1[0] == tempK) {
-                    // fant nøkkelbokstav
-                    // søke bortover i denne rader
                     for (int col = 0; col < vigenere.length; col++) {
+                        // Found encrypted character posistion.
                         if (vigenere1[col] == temp) {
                             plaintext.append(vigenere[0][col]);
-                            //ctr++;
+                            // Reset key counter
                             if(ctr > key.length() - 1)
                                 ctr = 0;
                             break;

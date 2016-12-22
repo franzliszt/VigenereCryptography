@@ -28,6 +28,7 @@ public class VigenereCryptography extends Application {
         scene.getStylesheets().add(getClass().getResource("vigenereStyle.css").toExternalForm());
         
         stage.setTitle("Vigenere Cryptography");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
         

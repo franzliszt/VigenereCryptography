@@ -55,7 +55,7 @@ public class VigenereController {
             outputResult.setText(cipherText);
         } 
         if(!encMode && ok) {
-            String plaintext = c.decrypt(inputString.getText(), getKey());
+            String plaintext = c.decrypt(userInput, getKey());
             outputResult.setText(plaintext);
         }
     }
@@ -66,7 +66,7 @@ public class VigenereController {
     }
     
     private boolean checkInput(String input) {
-        return input.matches("[a-zA-Z]+");
+        return input.matches("[a-z]+");
     }
     
     private String getKey() {
