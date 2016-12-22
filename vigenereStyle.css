@@ -1,7 +1,25 @@
-/*
- * Empty Stylesheet file.
- */
+#gridpane {
+    -fx-background-color: #222222;
+}
 
-.mainFxmlClass {
+.label {
+    -fx-text-fill: #eaeaea;
+}
 
+#header {
+    -fx-font-size: 2em;
+    -fx-text-fill: #eaeaea;
+}
+
+.button {
+    -fx-background-color:bisque;
+}
+
+#encryptBtn {
+    -fx-background-color: #777777;
+    -fx-text-fill: #111111;
+}
+
+#encryptBtn:hover {
+    -fx-background-color: #999999;
 }
