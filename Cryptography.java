@@ -10,23 +10,35 @@ package vigenerecryptography;
  * @author stianreistadrogeberg
  */
 public class Cryptography {
-    private char[] a;
+    private char[] alphabet;
     private char[][] vigenere;
     
     public Cryptography() {
-        initVigenere();
+        initAlphabet();
+        initMatrix();
     }
     
-    private void initVigenere() {
-        a = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
-        vigenere = new char[a.length][a.length];
-        vigenere[0] = a;
+    private void initAlphabet() {
+        char a = 'A';
+        int temp = 26 + (int) a;
+        alphabet = new char[26];
+        int next = 0;
         
-        for(int i = 1; i < a.length; i++) {
+        while(a < temp) {
+            alphabet[next++] = (char) a++;
+        }
+    }
+    
+    private void initMatrix() {
+        int length = alphabet.length;
+        vigenere = new char[length][length];
+        vigenere[0] = alphabet;
+        
+        for(int i = 1; i < alphabet.length; i++) {
             char firstChar = vigenere[i - 1][0];
             
             // Move all one position
-            for(int j = 0; j < a.length - 1; j++) {
+            for(int j = 0; j < alphabet.length - 1; j++) {
                 vigenere[i][j] = vigenere[i - 1][j + 1];
             }
             // Insert the first character on the last position
