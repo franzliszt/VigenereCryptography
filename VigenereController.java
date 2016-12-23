@@ -47,17 +47,22 @@ public class VigenereController {
     
     @FXML
     public void encryptionMode() {
-        String userInput = inputString.getText().toLowerCase();
-        boolean ok = checkInput(userInput);
+        String userInput = inputString.getText();
+        boolean ok = validateInput(userInput, encryptionKey.getText());
         
         if(encMode && ok) {
-            String cipherText = c.encrypt(userInput, getKey());
-            outputResult.setText(cipherText);
+            String cipherText = c.encrypt(userInput.toUpperCase(), getKey());
+            outputResult.setText(cipherText.toUpperCase());
         } 
+        
         if(!encMode && ok) {
-            String plaintext = c.decrypt(userInput, getKey());
-            outputResult.setText(plaintext);
+            String plaintext = c.decrypt(userInput.toUpperCase(), getKey());
+            outputResult.setText(plaintext.toUpperCase());
         }
+    }
+    
+    private boolean validateInput(String text, String key) {
+        return text.matches("[a-zA-Z]+") && key.matches("[a-zA-Z]+");
     }
     
     private void resetFields() {
@@ -65,12 +70,8 @@ public class VigenereController {
         encryptionKey.setText("");
     }
     
-    private boolean checkInput(String input) {
-        return input.matches("[a-z]+");
-    }
-    
     private String getKey() {
-        return encryptionKey.getText();
+        return encryptionKey.getText().toUpperCase();
     }
     
 }

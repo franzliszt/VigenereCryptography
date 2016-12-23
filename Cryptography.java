@@ -18,7 +18,7 @@ public class Cryptography {
     }
     
     private void initVigenere() {
-        a = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        a = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
         vigenere = new char[a.length][a.length];
         vigenere[0] = a;
         
@@ -49,10 +49,10 @@ public class Cryptography {
                 if(temp == vigenere[0][col]) {
                     char tempK = key.charAt(ctr++);
                     // Searching rows for key character.
-                    for (char[] vigenere1 : vigenere) {
+                    for (char[] row : vigenere) {
                         // Found key character row.
-                        if (tempK == vigenere1[0]) {
-                            ciphertext.append(vigenere1[col]);
+                        if (tempK == row[0]) {
+                            ciphertext.append(row[col]);
                             // Reset key counter.
                             if(ctr > key.length() - 1)
                                 ctr = 0;
@@ -62,7 +62,7 @@ public class Cryptography {
                 }
             }
         }
-        return ciphertext.toString().toUpperCase();
+        return ciphertext.toString();
     }
     
     public String decrypt(String ciphertext, String key) {
@@ -92,6 +92,6 @@ public class Cryptography {
                 }
             }
         }
-        return plaintext.toString().toUpperCase();
+        return plaintext.toString();
     }
 }
