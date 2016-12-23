@@ -88,12 +88,12 @@ public class Cryptography {
             char temp = ciphertext.charAt(i);
             
             // Search row for key.
-            for (char[] vigenere1 : vigenere) {
+            for (char[] row : vigenere) {
                 // Found key character.
-                if (vigenere1[0] == tempK) {
+                if (row[0] == tempK) {
                     for (int col = 0; col < vigenere.length; col++) {
                         // Found encrypted character posistion.
-                        if (vigenere1[col] == temp) {
+                        if (row[col] == temp) {
                             plaintext.append(vigenere[0][col]);
                             // Reset key counter
                             if(ctr > key.length() - 1)
