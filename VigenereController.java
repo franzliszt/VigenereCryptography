@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 /**
  * FXML Controller class
  *
- * @author stianreistadrogeberg
+ * @author Stian Reistad Røgeberg
  */
 public class VigenereController {
     private final Cryptography c;
@@ -36,7 +36,7 @@ public class VigenereController {
         encMode = !encMode;
         resetFields();
         
-        if(encMode) {
+        if (encMode) {
             encrypt.setText("Encrypt");
             mode.setText("Encryption");
         } else {
@@ -50,12 +50,12 @@ public class VigenereController {
         String userInput = inputString.getText();
         boolean ok = validateInput(userInput, encryptionKey.getText());
         
-        if(encMode && ok) {
+        if (encMode && ok) {
             String cipherText = c.encrypt(userInput.toUpperCase(), getKey());
             outputResult.setText(cipherText.toUpperCase());
         } 
         
-        if(!encMode && ok) {
+        if (!encMode && ok) {
             String plaintext = c.decrypt(userInput.toUpperCase(), getKey());
             outputResult.setText(plaintext.toUpperCase());
         }

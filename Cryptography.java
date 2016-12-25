@@ -7,7 +7,7 @@ package vigenerecryptography;
 
 /**
  *
- * @author stianreistadrogeberg
+ * @author Stian Reistad Røgeberg
  */
 public class Cryptography {
     private char[] alphabet;
@@ -24,7 +24,7 @@ public class Cryptography {
         alphabet = new char[26];
         int next = 0;
         
-        while(a < temp) {
+        while (a < temp) {
             alphabet[next++] = (char) a++;
         }
     }
@@ -34,11 +34,11 @@ public class Cryptography {
         vigenere = new char[length][length];
         vigenere[0] = alphabet;
         
-        for(int i = 1; i < alphabet.length; i++) {
+        for (int i = 1; i < alphabet.length; i++) {
             char firstChar = vigenere[i - 1][0];
             
             // Move all one position
-            for(int j = 0; j < alphabet.length - 1; j++) {
+            for (int j = 0; j < alphabet.length - 1; j++) {
                 vigenere[i][j] = vigenere[i - 1][j + 1];
             }
             // Insert the first character on the last position
@@ -52,13 +52,13 @@ public class Cryptography {
         // Counter for key index.
         int ctr = 0;
         
-        for(int i = 0; i < plaintext.length(); i++) {
+        for (int i = 0; i < plaintext.length(); i++) {
             char temp = plaintext.charAt(i);
             
             // Searching the first row to find plaintext position.
-            for(int col = 0; col < vigenere.length; col++) {
+            for (int col = 0; col < vigenere.length; col++) {
                 // Found position for plaintext character.
-                if(temp == vigenere[0][col]) {
+                if (temp == vigenere[0][col]) {
                     char tempK = key.charAt(ctr++);
                     // Searching rows for key character.
                     for (char[] row : vigenere) {
@@ -66,7 +66,7 @@ public class Cryptography {
                         if (tempK == row[0]) {
                             ciphertext.append(row[col]);
                             // Reset key counter.
-                            if(ctr > key.length() - 1)
+                            if (ctr > key.length() - 1)
                                 ctr = 0;
                             break;
                         }
@@ -83,7 +83,7 @@ public class Cryptography {
         // Counter for key index.
         int ctr = 0;
         
-        for(int i = 0; i < ciphertext.length(); i++) {
+        for (int i = 0; i < ciphertext.length(); i++) {
             char tempK = key.charAt(ctr++);
             char temp = ciphertext.charAt(i);
             

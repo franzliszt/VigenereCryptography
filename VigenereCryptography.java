@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author stianreistadrogeberg
+ * @author Stian Reistad Røgeberg
  */
 public class VigenereCryptography extends Application {
     private final double height = 500.0;
