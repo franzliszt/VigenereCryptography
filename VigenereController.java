@@ -62,7 +62,7 @@ public class VigenereController {
     }
     
     private boolean validateInput(String text, String key) {
-        return text.matches("[a-zA-Z]+") && key.matches("[a-zA-Z]+");
+        return text.matches("[a-zA-Z ]+") && key.matches("[a-zA-Z ]+");
     }
     
     private void resetFields() {
